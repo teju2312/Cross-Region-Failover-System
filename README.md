@@ -48,7 +48,7 @@ The AWS console was switched from the Mumbai region to the N. Virginia region to
 
 ### 7. Create DR Resources (`drtemp`, `sgdr`, `drload`, `drasuto`)
 The process from Part 1 was repeated to create a parallel set of resources for the DR site, including a new Launch Template with "Disaster Recovery - Region B" content.
-![DR Resource Creation](./screenshots/07-dr-resources.png)
+![DR Resource Creation](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/Disaster%20Recovery%20ss/Screenshot%20(122).png?raw=true)
 
 ---
 
