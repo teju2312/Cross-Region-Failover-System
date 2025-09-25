@@ -44,7 +44,7 @@ The load balancer's direct DNS name was accessed, correctly displaying the "Prim
 
 ### 6. Switch AWS Regions
 The AWS console was switched from the Mumbai region to the N. Virginia region to begin building the DR environment.
-![Switching Regions](./screenshots/06-switch-regions.png)
+![Switching Regions](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/Disaster%20Recovery%20ss/Screenshot%20(121).png?raw=true)
 
 ### 7. Create DR Resources (`drtemp`, `sgdr`, `drload`, `drasuto`)
 The process from Part 1 was repeated to create a parallel set of resources for the DR site, including a new Launch Template with "Disaster Recovery - Region B" content.
