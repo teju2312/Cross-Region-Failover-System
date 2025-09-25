@@ -18,7 +18,7 @@ This document provides a detailed, screenshot-by-screenshot breakdown of the dep
 
 ### 1. Create Launch Template (`mytemp`)
 A blueprint for our primary servers was created, defining the Amazon Linux AMI, `t2.micro` instance type, and a startup script to install a basic web server.
-![Primary Launch Template](./high-availability-ss/01-primary-launch-template.png)
+![Primary Launch Template]([./high-availability-ss/01-primary-launch-template.png](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(110).png?raw=true))
 
 ### 2. Create Security Group (`lbsg`)
 A firewall rule was configured to allow public inbound **HTTP** traffic on **port 80**, enabling users to access the web server.
