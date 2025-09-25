@@ -76,7 +76,7 @@ The final test confirmed the success of the entire architecture. After simulatin
 
 The final architecture is a robust, multi-region setup that routes users to a healthy application environment. Amazon Route 53 acts as the intelligent DNS layer, monitoring the primary site and triggering a failover to the DR site when necessary.
 
-![Multi-Region HA/DR Architecture on AWS](https_placeholder_for_architecture_diagram.png)
+![Multi-Region HA/DR Architecture on AWS](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/DA%20&%20Dr.jpeg?raw=true)
 
 **Traffic Flow:**
 `User -> Route 53 (Failover Records with Health Check)`
