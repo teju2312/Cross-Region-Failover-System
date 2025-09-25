@@ -22,7 +22,7 @@ A blueprint for our primary servers was created, defining the Amazon Linux AMI, 
 
 ### 2. Create Security Group (`lbsg`)
 A firewall rule was configured to allow public inbound **HTTP** traffic on **port 80**, enabling users to access the web server.
-![Primary Security Group](./High Availability ss/Screenshot (102).png)
+![Primary Security Group](./high-availability-ss/02-primary-security-group.png)
 
 ### 3. Create Application Load Balancer (`mylb`)
 An internet-facing Application Load Balancer was provisioned to act as the single entry point for all traffic and distribute requests.
