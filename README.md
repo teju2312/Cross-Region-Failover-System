@@ -62,19 +62,19 @@ The process from Part 1 was repeated to create a parallel set of resources for t
 
 ### 8. Update Domain Nameservers
 Control over the custom domain's DNS was delegated to AWS by updating the nameservers at the domain registrar (Namecheap) to point to Route 53.
-![Update Nameservers](./screenshots/08-update-nameservers.png)
+![Update Nameservers](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(117).png?raw=true)
 
 ### 9. Configure Route 53 Health Check
 A health check was created in Route 53 to continuously monitor the health of the primary load balancer (`mylb`) in the Mumbai region.
-![Route 53 Health Check](./screenshots/09-route53-health-check.png)
+![Route 53 Health Check](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/Disaster%20Recovery%20ss/Screenshot%20(130).png?raw=true)
 
 ### 10. Configure Failover DNS Records
 Two **'A' records** were created with a **Failover** routing policy: a **Primary** record pointing to the primary site and a **Secondary** record pointing to the DR site.
-![Route 53 Failover Records](./screenshots/10-route53-failover-records.png)
+![Route 53 Failover Records](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/Disaster%20Recovery%20ss/Screenshot%20(132).png?raw=true)
 
 ### 11. Final Test and Verification
 The final test confirmed the success of the entire architecture. After simulating a primary site failure, the custom domain automatically began serving the **"Disaster Recovery - Region B"** page.
-![Successful Failover Test](./screenshots/11-failover-test-success.png)
+![Successful Failover Test](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/Disaster%20Recovery%20ss/Screenshot%20(131).png?raw=true)
 
 ## 🏛️ Final Architecture
 
