@@ -9,6 +9,69 @@ The architecture is designed to achieve a low **Recovery Time Objective (RTO)**,
 * **High Availability** is architected within a single region (`ap-south-1`) to withstand common failures, such as a server crash or a datacenter (Availability Zone) becoming unavailable.
 * **Disaster Recovery** is achieved by replicating the infrastructure in a second, geographically separate region (`us-east-1`) and implementing an automated failover to redirect traffic if the entire primary region goes offline.
 
+# Visual Walkthrough: HA/DR Architecture on AWS
+
+This document provides a detailed, screenshot-by-screenshot breakdown of the deployment process for the multi-region, highly available web application.
+
+## Part 1: Setting Up the Highly Available Primary Site (Mumbai, `ap-south-1`)
+*This phase focused on building a resilient application in a single region to handle common failures.*
+
+### 1. Create Launch Template (`mytemp`)
+A blueprint for our primary servers was created, defining the Amazon Linux AMI, `t2.micro` instance type, and a startup script to install a basic web server.
+![Primary Launch Template]([High Availability ss/Screenshot (110).png](https://github.com/teju2312/Cross-Region-Failover-System/blob/0c6b2051af90f8f2467d305f9e3d4df5e57472c9/High%20Availability%20ss/Screenshot%20(110).png))
+
+### 2. Create Security Group (`lbsg`)
+A firewall rule was configured to allow public inbound **HTTP** traffic on **port 80**, enabling users to access the web server.
+![Primary Security Group]([./screenshots/02-primary-security-group.png](https://github.com/teju2312/Cross-Region-Failover-System/blob/0c6b2051af90f8f2467d305f9e3d4df5e57472c9/High%20Availability%20ss/Screenshot%20(102).png))
+
+### 3. Create Application Load Balancer (`mylb`)
+An internet-facing Application Load Balancer was provisioned to act as the single entry point for all traffic and distribute requests.
+![Primary Application Load Balancer](./screenshots/03-primary-alb.png)
+
+### 4. Create Auto Scaling Group (`myauto`)
+An Auto Scaling Group was created with a **desired capacity of 3 instances**. This ensures three healthy instances are always running across multiple Availability Zones for fault tolerance.
+![Primary Auto Scaling Group](./screenshots/04-primary-asg.png)
+
+### 5. Initial Verification
+The load balancer's direct DNS name was accessed, correctly displaying the "Primary Zone A" page and confirming the initial setup worked.
+![Primary Site Verification](./screenshots/05-primary-verification.png)
+
+---
+
+## Part 2: Configuring the Disaster Recovery Site (N. Virginia, `us-east-1`)
+
+*This phase involved replicating the infrastructure in a second, geographically separate region to protect against a regional outage.*
+
+### 6. Switch AWS Regions
+The AWS console was switched from the Mumbai region to the N. Virginia region to begin building the DR environment.
+![Switching Regions](./screenshots/06-switch-regions.png)
+
+### 7. Create DR Resources (`drtemp`, `sgdr`, `drload`, `drasuto`)
+The process from Part 1 was repeated to create a parallel set of resources for the DR site, including a new Launch Template with "Disaster Recovery - Region B" content.
+![DR Resource Creation](./screenshots/07-dr-resources.png)
+
+---
+
+## Part 3: Implementing and Testing Automated Failover with Route 53
+
+*This final phase connected both sites and verified the automated failover capability.*
+
+### 8. Update Domain Nameservers
+Control over the custom domain's DNS was delegated to AWS by updating the nameservers at the domain registrar (Namecheap) to point to Route 53.
+![Update Nameservers](./screenshots/08-update-nameservers.png)
+
+### 9. Configure Route 53 Health Check
+A health check was created in Route 53 to continuously monitor the health of the primary load balancer (`mylb`) in the Mumbai region.
+![Route 53 Health Check](./screenshots/09-route53-health-check.png)
+
+### 10. Configure Failover DNS Records
+Two **'A' records** were created with a **Failover** routing policy: a **Primary** record pointing to the primary site and a **Secondary** record pointing to the DR site.
+![Route 53 Failover Records](./screenshots/10-route53-failover-records.png)
+
+### 11. Final Test and Verification
+The final test confirmed the success of the entire architecture. After simulating a primary site failure, the custom domain automatically began serving the **"Disaster Recovery - Region B"** page.
+![Successful Failover Test](./screenshots/11-failover-test-success.png)
+
 ## 🏛️ Final Architecture
 
 The final architecture is a robust, multi-region setup that routes users to a healthy application environment. Amazon Route 53 acts as the intelligent DNS layer, monitoring the primary site and triggering a failover to the DR site when necessary.
