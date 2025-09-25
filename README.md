@@ -18,23 +18,23 @@ This document provides a detailed, screenshot-by-screenshot breakdown of the dep
 
 ### 1. Create Launch Template (`mytemp`)
 A blueprint for our primary servers was created, defining the Amazon Linux AMI, `t2.micro` instance type, and a startup script to install a basic web server.
-![Primary Launch Template]([./high-availability-ss/01-primary-launch-template.png](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(110).png?raw=true))
+![Primary Launch Template](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(110).png?raw=true)
 
 ### 2. Create Security Group (`lbsg`)
 A firewall rule was configured to allow public inbound **HTTP** traffic on **port 80**, enabling users to access the web server.
-![Primary Security Group](./high-availability-ss/02-primary-security-group.png)
+![Primary Security Group](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(102).png?raw=true)
 
 ### 3. Create Application Load Balancer (`mylb`)
 An internet-facing Application Load Balancer was provisioned to act as the single entry point for all traffic and distribute requests.
-![Primary Application Load Balancer](./screenshots/03-primary-alb.png)
+![Primary Application Load Balancer](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(103).png?raw=true)
 
 ### 4. Create Auto Scaling Group (`myauto`)
 An Auto Scaling Group was created with a **desired capacity of 3 instances**. This ensures three healthy instances are always running across multiple Availability Zones for fault tolerance.
-![Primary Auto Scaling Group](./screenshots/04-primary-asg.png)
+![Primary Auto Scaling Group](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(108).png?raw=true)
 
 ### 5. Initial Verification
 The load balancer's direct DNS name was accessed, correctly displaying the "Primary Zone A" page and confirming the initial setup worked.
-![Primary Site Verification](./screenshots/05-primary-verification.png)
+![Primary Site Verification](https://github.com/teju2312/Cross-Region-Failover-System/blob/main/High%20Availability%20ss/Screenshot%20(109).png?raw=true)
 
 ---
 
