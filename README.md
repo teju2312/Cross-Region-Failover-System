@@ -18,11 +18,11 @@ This document provides a detailed, screenshot-by-screenshot breakdown of the dep
 
 ### 1. Create Launch Template (`mytemp`)
 A blueprint for our primary servers was created, defining the Amazon Linux AMI, `t2.micro` instance type, and a startup script to install a basic web server.
-![Primary Launch Template]([High Availability ss/Screenshot (110).png](https://github.com/teju2312/Cross-Region-Failover-System/blob/0c6b2051af90f8f2467d305f9e3d4df5e57472c9/High%20Availability%20ss/Screenshot%20(110).png))
+![Primary Launch Template](./high-availability-ss/01-primary-launch-template.png)
 
 ### 2. Create Security Group (`lbsg`)
 A firewall rule was configured to allow public inbound **HTTP** traffic on **port 80**, enabling users to access the web server.
-![Primary Security Group]([./screenshots/02-primary-security-group.png](https://github.com/teju2312/Cross-Region-Failover-System/blob/0c6b2051af90f8f2467d305f9e3d4df5e57472c9/High%20Availability%20ss/Screenshot%20(102).png))
+![Primary Security Group](./High Availability ss/Screenshot (102).png)
 
 ### 3. Create Application Load Balancer (`mylb`)
 An internet-facing Application Load Balancer was provisioned to act as the single entry point for all traffic and distribute requests.
